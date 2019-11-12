@@ -1,0 +1,51 @@
+@keyframes testBorder {
+	0%,
+	100% {
+		border-color: #ff0000;
+	}
+	25% {
+		border-color: #d7ff00;
+	}
+	50% {
+		border-color: #3300ff;
+	}
+	75% {
+		border-color: #dc00ff;
+	}
+}
+
+// Target elements without href / alt props specified
+a:not([href]),
+img:not([alt]) {
+	color: red !important;
+	border: 1px solid red !important;
+}
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.test {
+	border: 1px solid red;
+	animation-name: testBorder;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	color: red !important;
+}
+
+.buttonEffect:active {
+	transform: translateY(1px);
+	transition-duration: 0.1s;
+}
+
+.is {
+	&--dNone {
+		display: none !important;
+	}
+
+	&--hidden {
+		visibility: hidden !important;
+	}
+}

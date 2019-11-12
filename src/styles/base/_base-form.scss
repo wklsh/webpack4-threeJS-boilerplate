@@ -1,0 +1,43 @@
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="submit"] {
+	appearance: none;
+	border-radius: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	margin: 0;
+	-webkit-appearance: none;
+}
+
+option {
+	text-shadow: none;
+}
+
+option:not(:checked) {
+	color: #000;
+}
+
+select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #000;
+}
+
+select::-ms-expand {
+	display: none; /* remove default arrow on ie10 and ie11 */
+}
+
+button:focus {
+	outline: 0;
+}

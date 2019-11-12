@@ -1,0 +1,38 @@
+//! import google fonts
+// @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700');
+// OR use @font-face like below
+
+//! import a custom font below
+@font-face {
+  font-family: "Libre-Baskerville-Reg";
+  font-display: fallback;
+  font-style: normal;
+  src: local("Libre Baskerville"), local("LibreBaskerville-Regular"),
+    url("~Src/fonts/libre-baskerville-v5-latin-regular.woff2") format("woff2"),
+    url("~Src/fonts/libre-baskerville-v5-latin-regular.woff") format("woff");
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px, 3.5rem = 35px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  @media (max-width: 1200px) {
+    font-size: 60%;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 58%;
+  }
+}
+
+* {
+	line-height: 1em;
+}
+
+body {
+  font-family: "Libre-Baskerville-Reg";
+  font-size: 1.6rem;
+  line-height: 1em;
+}
