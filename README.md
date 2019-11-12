@@ -1,5 +1,6 @@
 # Webpack 4 ThreeJS Boilerplate
-### HTML boilerplate forked from [webpack4-html-static](https://github.com/wklsh/webpack4-html-static).
+
+HTML boilerplate forked from [webpack4-html-static](https://github.com/wklsh/webpack4-html-static).
 
 ## Start DEV environment
 
