@@ -38,7 +38,14 @@ export default class Canvas {
 	addIntoScene(obj) {
 		this.sceneObjects.push(obj);
 		this.sceneObjects.forEach((sceneObj) => {
-			this.scene.add(sceneObj.init());
+      // Undef checks
+			if (sceneObj.init === undefined) {
+				console.error(
+					`${sceneObj.constructor.name} object has no init function! Unable to render into scene.`,
+				);
+			} else {
+				this.scene.add(sceneObj.init());
+			}
 		});
 	}
 
@@ -46,7 +53,10 @@ export default class Canvas {
 		window.requestAnimationFrame(() => this.onTick());
 
 		for (let i = 0; i < this.sceneObjects.length; i += 1) {
-			this.sceneObjects[i].onTick();
+      // Undef checks
+			if (this.sceneObjects[i].onTick !== undefined) {
+				this.sceneObjects[i].onTick();
+			}
 		}
 
 		this.renderer.render(this.scene, this.camera);
