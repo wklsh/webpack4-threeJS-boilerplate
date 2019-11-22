@@ -9,6 +9,8 @@ export default class Canvas {
 		this.camera = null;
 		this.scene = null;
 		this.sceneObjects = [];
+    this.controls = null;
+		this.timeout = null;
 
 		this.init = this.init;
 		this.addIntoScene = this.addIntoScene;
@@ -33,6 +35,21 @@ export default class Canvas {
 
 	initScene() {
 		this.scene = new THREE.Scene();
+	}
+  
+  initControls() {
+		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+	}
+  
+  onWindowResize() {
+		// Debounce event to prevent resize spams
+		clearTimeout(this.timeout);
+		this.timeout = setTimeout(() => {
+			this.camera.aspect = window.innerWidth / window.innerHeight;
+			this.camera.updateProjectionMatrix();
+
+			this.renderer.setSize(window.innerWidth, window.innerHeight);
+		}, 250);
 	}
 
 	addIntoScene(obj) {
@@ -66,6 +83,8 @@ export default class Canvas {
 		this.initCamera();
 		this.initRenderer();
 		this.initScene();
+		this.initControls();
+		window.addEventListener("resize", this.onWindowResize.bind(this), false);
 
 		this.addIntoScene(new Cube());
 
