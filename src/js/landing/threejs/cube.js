@@ -4,19 +4,19 @@ export default class Cube {
 	constructor() {
 		this.mesh = null;
 
-		this.init = this.init;
-		this.onTick = this.onTick;
-	}
-
-	init(size) {
-		// Set default params
-		const localSize = size || {
+		this.cubeValues = {
+			scale: 1,
 			width: 1,
 			height: 1,
 			depth: 1,
 		};
+	}
 
-		const geometry = new THREE.BoxGeometry(localSize.width, localSize.height, localSize.depth);
+	init() {
+		// Append values to Dat.GUI
+		this.addGui();
+
+		const geometry = new THREE.BoxGeometry(cubeValues.width, cubeValues.height, cubeValues.depth);
 		const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 		this.mesh = new THREE.Mesh(geometry, material);
 
@@ -27,5 +27,14 @@ export default class Cube {
 	onTick() {
 		this.mesh.rotation.x += 0.01;
 		this.mesh.rotation.y += 0.01;
+
+		this.mesh.scale.x = this.cubeValues.scale;
+		this.mesh.scale.y = this.cubeValues.scale;
+		this.mesh.scale.z = this.cubeValues.scale;
+	}
+
+	addGui() {
+		const gui = this.parent.gui;
+		gui.add(this.cubeValues, "scale", 0, 10);
 	}
 }

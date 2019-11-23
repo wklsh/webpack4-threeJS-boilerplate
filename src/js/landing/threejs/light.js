@@ -9,7 +9,8 @@ export default class Light {
 
 	init() {
 		this.spotlight = new THREE.SpotLight("white", 1);
-		this.spotlight.position.set(15, 40, 35);
+		// this.spotlight.position.set(15, 40, 35);
+		this.spotlight.position.set(1, 4, 3);
 		// this.spotlight.angle = Math.PI / 4;
 
 		this.spotlight.castShadow = true;
