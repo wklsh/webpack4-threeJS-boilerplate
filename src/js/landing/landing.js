@@ -1,5 +1,5 @@
 import "../index";
-import Loader from "./threejs/loader";
+import ThreeLoader from "./threejs/loader";
 
-const loader = new Loader();
-loader.init();
+const threeLoader = new ThreeLoader();
+threeLoader.init();

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default class cube {
+export default class Cube {
 	constructor() {
 		this.mesh = null;
 
