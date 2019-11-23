@@ -1,10 +1,10 @@
 import * as dat from "dat.gui";
 
 export default class GUIController {
-	constructor(parentObj) {
+	constructor(parent) {
 		this.GUIController = null;
 
-		this.parentObj = parentObj;
+		this.parent = parent;
 		this.init = this.init;
 	}
 
