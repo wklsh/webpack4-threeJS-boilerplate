@@ -6,7 +6,9 @@ import Cube from "./cube";
 import Light from "./light";
 import LightHelper from "./lightHelper";
 
-const canvasWrapperEl = document.querySelector("#js-canvasWrapper");
+const canvasEl = document.querySelector("#js-canvasEl");
+let canvasWidth = canvasEl.offsetWidth;
+let canvasHeight = canvasEl.offsetHeight;
 
 export default class ThreeLoader {
 	constructor() {
@@ -23,9 +25,13 @@ export default class ThreeLoader {
 	}
 
 	initRenderer() {
-		this.renderer = new THREE.WebGLRenderer();
-		this.renderer.setSize(window.innerWidth, window.innerHeight);
-		canvasWrapperEl.appendChild(this.renderer.domElement);
+		this.renderer = new THREE.WebGLRenderer({
+			canvas: canvasEl,
+			antialias: true,
+		});
+		this.renderer.setSize(canvasWidth, canvasHeight);
+		this.renderer.shadowMap.enabled = true;
+		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	}
 
 	initCamera() {
@@ -55,10 +61,17 @@ export default class ThreeLoader {
 		// Debounce event to prevent resize spams
 		clearTimeout(this.timeout);
 		this.timeout = setTimeout(() => {
-			this.camera.aspect = window.innerWidth / window.innerHeight;
+			// Clear inline styles to trigger canvas re-size
+			canvasEl.style.width = "";
+			canvasEl.style.height = "";
+			// Update values
+			canvasWidth = canvasEl.offsetWidth;
+			canvasHeight = canvasEl.offsetHeight;
+
+			this.camera.aspect = canvasWidth / canvasHeight;
 			this.camera.updateProjectionMatrix();
 
-			this.renderer.setSize(window.innerWidth, window.innerHeight);
+			this.renderer.setSize(canvasWidth, canvasHeight);
 		}, 250);
 	}
 
