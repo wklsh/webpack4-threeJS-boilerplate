@@ -21,6 +21,10 @@ module.exports = merge(common, {
 			"Access-Control-Allow-Origin": "*",
 		},
 	},
+  
+  watchOptions: {
+		ignored: /node_modules/,
+	},
 
 	optimization: {
 		namedModules: true,
