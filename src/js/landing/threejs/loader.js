@@ -83,18 +83,34 @@ export default class ThreeLoader {
 		}, 250);
 	}
 
-	addIntoScene(obj) {
+	addIntoScene(obj, warn = true) {
 		this.sceneObjects.push(obj);
 		this.sceneObjects.forEach((sceneObj) => {
 			// Undef checks
-			if (sceneObj.init === undefined) {
+			if (sceneObj.init === undefined && warn) {
 				console.error(
 					`${sceneObj.constructor.name} object has no init function! Unable to render into scene.`,
 				);
 			} else {
-				this.scene.add(sceneObj.init());
+				if (sceneObj.init) {
+					this.scene.add(sceneObj.init());
+				}
 			}
 		});
+	}
+  
+  removeFromScene(objName) {
+		// Only accept named objects to be removed
+		if (typeof objName === "string") {
+			// Remove object from array in this class
+			this.sceneObjects = this.sceneObjects.filter((item) => item.objectName !== objName);
+
+			// Remove object from Scene
+			const getObjectByName = this.scene.getObjectByName(objName);
+			this.scene.remove(getObjectByName);
+		} else {
+			console.error(`Only named objects can be removed.`);
+		}
 	}
 
 	onTick() {
@@ -121,7 +137,6 @@ export default class ThreeLoader {
 		this.initControls();
 		this.initDatGui();
     this.initStats();
-
 
 		// Resize updates
 		window.addEventListener("resize", this.onWindowResize.bind(this), false);
