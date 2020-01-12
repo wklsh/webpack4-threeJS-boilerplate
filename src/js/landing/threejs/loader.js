@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import * as dat from "dat.gui";
 import OrbitControls from "orbit-controls-es6";
+import Stats from "stats.js";
 
 import Cube from "./cube";
 import Light from "./light";
@@ -19,6 +20,7 @@ export default class ThreeLoader {
 		this.controls = null;
 		this.timeout = null;
 		this.gui = null;
+    this.stats = null;
 
 		this.init = this.init;
 		this.addIntoScene = this.addIntoScene;
@@ -51,6 +53,12 @@ export default class ThreeLoader {
 
 	initControls() {
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+	}
+  
+  initStats() {
+		this.stats = new Stats();
+		this.stats.showPanel(0);
+		document.body.appendChild(this.stats.dom);
 	}
 
 	initDatGui() {
@@ -91,6 +99,10 @@ export default class ThreeLoader {
 
 	onTick() {
 		window.requestAnimationFrame(() => this.onTick());
+    
+    // FPS counter
+		this.stats.begin();
+		this.stats.end();
 
 		for (let i = 0; i < this.sceneObjects.length; i += 1) {
 			// Undef checks
@@ -108,6 +120,8 @@ export default class ThreeLoader {
 		this.initScene();
 		this.initControls();
 		this.initDatGui();
+    this.initStats();
+
 
 		// Resize updates
 		window.addEventListener("resize", this.onWindowResize.bind(this), false);
