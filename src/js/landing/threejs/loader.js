@@ -29,7 +29,7 @@ export default class ThreeLoader {
 	initRenderer() {
 		this.renderer = new THREE.WebGLRenderer({
 			canvas: canvasEl,
-			antialias: true,
+      // antialias: true, // Extremely laggy, consider using THREE.FXAAShader instead
 		});
 		this.renderer.setSize(canvasWidth, canvasHeight);
 		this.renderer.shadowMap.enabled = true;
