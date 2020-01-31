@@ -191,6 +191,7 @@
 		// https://www.npmjs.com/package/eslint-config-airbnb-base
 		"eol-last": "off",
 		"indent": [2, "tab"],
-		"no-tabs": "off"
+		"no-tabs": "off",
+		"operator-linebreak": "off"
 	}
 }
