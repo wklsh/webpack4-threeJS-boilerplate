@@ -8,8 +8,8 @@ import Light from "./light";
 import LightHelper from "./lightHelper";
 
 const canvasEl = document.querySelector("#js-canvasEl");
-let canvasWidth = canvasEl.offsetWidth;
-let canvasHeight = canvasEl.offsetHeight;
+const canvasWidth = canvasEl.offsetWidth;
+const canvasHeight = canvasEl.offsetHeight;
 
 export default class ThreeLoader {
 	constructor() {
@@ -91,10 +91,8 @@ export default class ThreeLoader {
 				console.error(
 					`${sceneObj.constructor.name} object has no init function! Unable to render into scene.`,
 				);
-			} else {
-				if (sceneObj.init) {
-					this.scene.add(sceneObj.init());
-				}
+			} else if (sceneObj.init) {
+				this.scene.add(sceneObj.init());
 			}
 		});
 	}
@@ -109,12 +107,12 @@ export default class ThreeLoader {
 			const getObjectByName = this.scene.getObjectByName(objName);
 			this.scene.remove(getObjectByName);
 		} else {
-			console.error(`Only named objects can be removed.`);
+			console.error("Only named objects can be removed.");
 		}
 	}
 
-	onTick() {
-		window.requestAnimationFrame(() => this.onTick());
+	onTick(timestamp) {
+		window.requestAnimationFrame((rafTimestamp) => this.onTick(rafTimestamp));
     
     // FPS counter
 		this.stats.begin();
@@ -123,7 +121,7 @@ export default class ThreeLoader {
 		for (let i = 0; i < this.sceneObjects.length; i += 1) {
 			// Undef checks
 			if (this.sceneObjects[i].onTick !== undefined) {
-				this.sceneObjects[i].onTick();
+         this.sceneObjects[i].onTick(timestamp / 1000 || 0);
 			}
 		}
 
