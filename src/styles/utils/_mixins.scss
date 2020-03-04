@@ -137,3 +137,28 @@
 	}
 }
 
+
+/*--------------------------------------------------------------------------------------
+ Convert px values to vmax/vmin equivalent, with fallbacks included.
+ Supports variable properties, with defaults set to font-size
+
+ USAGE:
+ @include vmify(16);
+ @include vmify(16, "left", "vmax");
+ --------------------------------------------------------------------------------------*/
+@mixin vmify($px, $property: "font-size", $vType: "vmin") {
+	// Dependant on design specs
+	$vminToPx: 9;
+	$vmaxToPx: 16;
+
+	$convertedVal: ($px / $vminToPx) * 1#{$vType};
+
+	@if $vType == "vmax" {
+		$convertedVal: ($px / $vmaxToPx) * 1#{$vType};
+	}
+
+	#{$property}: #{$px}px;
+	#{$property}: $convertedVal;
+}
+
+
