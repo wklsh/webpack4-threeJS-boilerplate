@@ -61,7 +61,7 @@
 	},
 	"dependencies": {
 		"dat.gui": "^0.7.6",
-		"jquery": "^3.4.1",
+		"jquery": "^3.5.0",
 		"stats.js": "^0.17.0",
 		"offline-plugin": "^5.0.7",
 		"orbit-controls-es6": "^2.0.1",
