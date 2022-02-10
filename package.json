@@ -44,7 +44,7 @@
 		"imagemin-mozjpeg": "^8.0.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"mini-css-extract-plugin": "^0.5.0",
-		"node-sass": "^4.13.0",
+		"node-sass": "^7.0.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.3",
 		"portfinder-sync": "0.0.2",
 		"postcss-loader": "^3.0.0",
